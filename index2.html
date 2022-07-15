@@ -1,0 +1,66 @@
+<!-- Part Two - Movies App!
+Build an application that uses jQuery to do the following:
+
+Contains a form with two inputs for a title and rating along with a button to submit the form.
+When the form is submitted, capture the values for each of the inputs and append them to the DOM along with a button to remove each title and rating from the DOM.
+When the button to remove is clicked, remove each title and rating from the DOM.
+Further Study
+Ensure that the rating of a movie can only be between 0 and 10.
+Ensure that a title has at least 2 characters in it.
+Allow users to sort alphabetically by the title of the movie or by the rating of the movie from lowest to highest and vice versa. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <button id="sortTitle">Sort by Title</button>
+        <button id="sortTitle">Sort by Rating</button>
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="rating">Rating(0 to 10)</label>
+        <input type="range" name="rating" id="rating" min="0", max="10" value="0">
+        <button type="submit" id="submitBtn">Submit</button>
+    </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $('form').on('click', '#submitBtn', function(e){
+        e.preventDefault();
+        let title =$('#title').val();
+        let rating =$('#rating').val();
+        if(title.length<2){
+            alert('please enter more than 2 letters');
+            $('#title').val('');
+            return;
+        }
+        $('form').append(`<div><p> Movie Title:<span class='title'>${title}</span> Rating:<span class='rating'>${rating}<span></p> <button class="remove">Remove</button></div>`);
+        $('#title').val('');
+        $('#rating').val('0');
+    })
+
+    $('form').on('click','.remove', function(e){
+        e.preventDefault();
+        $(this).parent().remove();
+    })
+
+    // $('form').on('click', '#sort', function(e){
+    //     // e.preventDefault();
+    //     const movieTitles =$('span.title');
+    //     for(let title of movieTitles){
+
+    //     }
+
+    //     $('span.rating')
+    // })
+
+    
+</script>
+</body>
+</html>
